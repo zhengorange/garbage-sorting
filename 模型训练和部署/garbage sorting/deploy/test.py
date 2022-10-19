@@ -2,6 +2,7 @@ import torch
 from torchvision import transforms
 from model import Vit, SwinTransformer, ResNet50Pretrain, ResNet50InitRandom
 import torch.nn.functional as F
+import datetime
 
 
 class Model:
@@ -32,15 +33,18 @@ class Model:
             4: "有害垃圾"
         }
 
+    @torch.no_grad()
     def getLabel(self, im_data, met: int):
+        starttime = datetime.datetime.now()
         inputs = self.test_transforms(im_data)
         inputs = torch.unsqueeze(inputs, dim=0)
         inputs = inputs.to(self.device)
         outputs = self.net[met](inputs)
         confidence, predict = torch.max(F.softmax(outputs.data, dim=1), dim=1)
         id = predict.cpu().numpy()[0]
+        endtime = datetime.datetime.now()
+        print("推理时间:{}", endtime - starttime)
         if id in self.id2label:
             return self.id2label[id], confidence
         else:
             return "none", confidence
-
