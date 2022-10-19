@@ -1,0 +1,69 @@
+.container {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	padding: 20rpx 0;
+}
+
+.title {
+	display: flex;
+	font-size: 140rpx;
+	justify-content: center;
+	font-weight: bold;
+}
+
+.font1 {
+	color: #00b100;
+	margin: 0 10rpx;
+}
+
+.font2 {
+	color: #fcd949;
+	margin: 0 10rpx;
+}
+
+.font3 {
+	color: #2b82c9;
+	margin: 0 10rpx;
+}
+
+.font4 {
+	color: #c11d1e;
+	margin: 0 10rpx;
+}
+
+.res {
+	font-size: 1.2em;
+	text-align: center;
+}
+
+.loading {
+	font-size: larger;
+	font-weight: bold;
+	text-align: center;
+	width: 100%;
+	color: white;
+	animation: cuca 4s infinite linear;
+}
+
+@keyframes cuca {
+	0% {
+		background-color: #00b100;
+	}
+
+	25% {
+		background-color: #fcd949;
+	}
+
+	50% {
+		background-color: #2b82c9;
+	}
+
+	75% {
+		background-color: #c11d1e;
+	}
+	100% {
+		background-color: #00b100;
+	}
+}

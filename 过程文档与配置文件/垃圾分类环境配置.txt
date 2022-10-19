@@ -1,0 +1,7 @@
+docker network create -d bridge sorting-net
+
+docker run -d -v /server/sorting:/jar --name sorting --network sorting-net openjdk:17.0.2-jdk /usr/java/openjdk-17/bin/java -jar -Duser.timezone=GMT+08 /jar/sorting-0.0.1-SNAPSHOT.jar
+
+docker run -d --name rabbitmq -p 15672:15672 -p 5672:5672 --network sorting-net rabbitmq:3-management
+
+docker run --name sorting-nginx -v /server/sorting-conf/nginx.conf:/etc/nginx/nginx.conf -v /server/keys:/home/keys -p 90:443 -d --network sorting-net nginx:1.21.1

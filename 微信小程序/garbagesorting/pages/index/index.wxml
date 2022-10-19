@@ -1,0 +1,19 @@
+<view class="container">
+	<view class="title">
+		<view class="font1">垃</view>
+		<view class="font2">圾</view>
+		<view class="font3">分</view>
+		<view class="font4">类</view>
+	</view>
+	<image style="width: 750rpx;" mode="aspectFit" src="{{imgsrc}}"></image>
+	<!-- <view class="res" wx:if="{{state == 3}}">这个89.5%是易拉罐，属于可回收垃圾。此结果由MYAADAN服务器计算。</view> -->
+	<view class="res" wx:if="{{state == 3}}">{{res}}</view>
+	<view class="loading" wx:if="{{state == 2}}">计算中...</view>
+	<view class="res" wx:if="{{state == 4}}">通信异常</view>
+	<picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view style="text-align: center;">
+      分类模型选择：{{array[index]}}
+    </view>
+  </picker>
+	<button type="primary" bindtap="takePhoto"> 获取图像 </button>
+</view>
